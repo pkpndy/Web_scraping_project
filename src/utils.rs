@@ -1,7 +1,7 @@
 use reqwest::Client;
 
 /*
-concat! takes any number of comma-separated literals and gives
+concat! takes any number of comma-separated literals and gives string slice
 env! expands to the value of the named environment variable at compile time
 */ 
 static APP_USER_AGENT: &str = concat!(env!("CARGO_PKG_NAME"), "/", env!("CARGO_PKG_VERSION"));
