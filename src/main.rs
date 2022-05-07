@@ -31,8 +31,6 @@ async fn main() {
     // looping on it will produce a list of ElementRef instances if any elements are found that match 
     // the criteria of the selector object
     
-        let inner = element.inner_html().to_string();   //.inner_html() gives the html inside the tags in string form
-        
         let mut span_el=element.select(&span_select);  // here we use select function and pass selector object
 
         let href = match element.value().attr("href")   // .value().attr grabs the links in href
@@ -44,6 +42,11 @@ async fn main() {
         match span_el.next()    //.next() is called on every object which advances the iterator and returns the next value
         {
             Some(elref) => {
+                let extra: String = String::from("new");
+                let inner=&elref.inner_html().to_string();
+                if inner.eq(&extra){
+                    continue;
+                }
                 println!("Job: {}",&elref.inner_html().to_string());
                 println!("Link: https:://www.indeed.com{}",&href);
                 continue;
